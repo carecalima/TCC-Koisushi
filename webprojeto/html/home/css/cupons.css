@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f3e9;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+
+/* LISTA */
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARD CUPOM */
+.card {
+  background: white;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border-left: 6px solid #c7a963;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card h3 {
+  margin: 0;
+  color: #7b1414;
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+.card p {
+  margin: 3px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+/* badge */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #7b1414;
+  color: white;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 500px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  .card p {
+    font-size: 13px;
+  }
+}
+
+.top-bar {
+  background-color: #7b1e1e;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.back-button i {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+.page-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+
+.voltar {
+  background: #7b1414;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.voltar:hover {
+  background: #a01f1f;
+}
+
+.voltar svg {
+  width: 20px;
+  height: 20px;
+}

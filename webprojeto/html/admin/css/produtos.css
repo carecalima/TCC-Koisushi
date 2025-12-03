@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: #f5f5f5;
+}
+
+header {
+    background: #a52a2a;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#btn-voltar {
+    background: #d9c7a2;
+    color: #000;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .2s;
+}
+
+#btn-voltar:hover {
+    background: #c1b08d;
+}
+
+
+header h1 {
+    font-size: 24px;
+}
+
+header #btn-novo-produto {
+    background: #d9c7a2;
+    color: #000;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .2s;
+}
+
+header #btn-novo-produto:hover {
+    background: #c1b08d;
+}
+
+main {
+    width: 95%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px #0003;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: #d9c7a2;
+    padding: 12px;
+    font-size: 15px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background: #f0e7d2;
+}
+
+td img {
+    width: 50px;
+    border-radius: 4px;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+.btn-edit {
+    background: #1976d2;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    transition: .2s;
+}
+
+.btn-edit:hover {
+    background: #145fa8;
+}
+
+.btn-delete {
+    background: #e53935;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    transition: .2s;
+}
+
+.btn-delete:hover {
+    background: #c62828;
+}
+
+
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn .25s ease;
+}
+
+.modal {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.25);
+    animation: slideDown .25s ease;
+}
+
+.modal h2 {
+    margin-bottom: 12px;
+    color: #a52a2a;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-content label {
+    font-weight: bold;
+}
+
+.modal-content input,
+.modal-content select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1.5px solid #aaa;
+    outline: none;
+    transition: .2s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: #a52a2a;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+}
+
+.modal-actions button:first-child {
+    background: #777;
+    color: white;
+}
+
+.modal-actions button:first-child:hover {
+    background: #5e5e5e;
+}
+
+.modal-actions button:last-child {
+    background: #a52a2a;
+    color: white;
+}
+
+.modal-actions button:last-child:hover {
+    background: #8c2121;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+    
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: #faf7ef;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    td {
+        border: none;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    td img {
+        width: 60px;
+    }
+}

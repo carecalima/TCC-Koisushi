@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Koi Sushi - Admin</title>
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Koi Sushi</h2>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li onclick="location.href='html/pedidos.html'">Pedidos</li>
+        <li onclick="location.href='html/produtos.html'">Produtos</li>
+        <li onclick="location.href='../home.html'">Tela Inicial</li>
+        <li onclick="location.href='html/rodizioadm.html'">Rodízio</li>
+        <li onclick="logout()">Sair</li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <h1>Painel Administrativo</h1>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Pedidos Hoje</h3>
+          <p id="pedidosHoje">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Pedidos no Mês</h3>
+          <p id="pedidosMes">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Total de Pedidos</h3>
+          <p id="totalPedidos">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Vendas Totais (R$)</h3>
+          <p id="totalVendas">0,00</p>
+        </div>
+      </div>
+
+      <div class="grafico-box">
+        <h3>Pedidos nos últimos 7 dias</h3>
+        <canvas id="graficoPedidos"></canvas>
+      </div>
+
+      <div class="cards">
+  <div class="card">
+    <h3>Rodízios Hoje</h3>
+    <p id="rodiziosHoje">0</p>
+  </div>
+
+  <div class="card">
+    <h3>Rodízios no Mês</h3>
+    <p id="rodiziosMes">0</p>
+  </div>
+
+  <div class="card">
+    <h3>Total de Rodízios</h3>
+    <p id="totalRodizios">0</p>
+  </div>
+
+  <div class="card">
+    <h3>Valor Total (R$)</h3>
+    <p id="totalValor">0,00</p>
+  </div>
+</div>
+
+
+<script src="../../js/config.js"></script>
+<script src="js/dashboard.js"></script>
+  </body>
+</html>

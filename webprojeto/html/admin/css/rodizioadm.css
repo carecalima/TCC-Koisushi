@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+:root {
+  --primary-color: #7b1414;
+  --primary-hover: #a82323;
+  --accent-color: #c7a963;
+  --background-color: #f5f3e9;
+  --card-color: white;
+  --text-dark: #444;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: var(--background-color);
+  min-height: 100vh;
+  color: var(--text-dark);
+  padding: 20px;
+}
+
+header {
+  background: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#rodiziosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.rodizio {
+  background: var(--card-color);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  border-top: 6px solid var(--accent-color);
+  transition: var(--transition);
+}
+
+.rodizio:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.rodizio h2 {
+  color: var(--primary-color);
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--background-color);
+  font-weight: 600;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-color);
+  transition: var(--transition);
+}
+
+.item:hover {
+  background: #f0f0f0;
+  transform: translateX(5px);
+}
+
+.item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--accent-color);
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info strong {
+  color: var(--primary-color);
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.item-info br {
+  margin-bottom: 4px;
+  display: block;
+}
+
+select {
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  color: var(--text-dark);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 150px;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(199, 169, 99, 0.2);
+}
+
+select option[value="PENDENTE"] {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+select option[value="PREPARANDO"] {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+select option[value="ENTREGUE"] {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.item-info strong::after {
+  content: "• " attr(data-status);
+  font-size: 12px;
+  margin-left: 8px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.item-info strong[data-status="PENDENTE"]::after {
+  background: #e74c3c;
+  color: white;
+}
+
+.item-info strong[data-status="PREPARANDO"]::after {
+  background: #f39c12;
+  color: white;
+}
+
+.item-info strong[data-status="ENTREGUE"]::after {
+  background: #27ae60;
+  color: white;
+}
+
+#rodiziosContainer:empty::before {
+  content: "Nenhum rodízio ativo no momento";
+  display: block;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-dark);
+  font-size: 18px;
+  background: var(--card-color);
+  border-radius: 12px;
+  border: 2px dashed #ddd;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  header {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+  }
+  
+  .rodizio {
+    padding: 20px;
+  }
+  
+  .item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .item img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  select {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .item-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  header {
+    padding: 12px;
+  }
+  
+  header h1 {
+    font-size: 20px;
+  }
+  
+  .rodizio {
+    padding: 15px;
+  }
+  
+  .rodizio h2 {
+    font-size: 16px;
+  }
+  
+  .item {
+    padding: 12px;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.rodizio.atualizando {
+  animation: pulse 1s ease-in-out;
+}
+
+#rodiziosContainer {
+  scroll-behavior: smooth;
+}

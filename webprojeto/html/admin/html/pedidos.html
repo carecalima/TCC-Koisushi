@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Pedidos</title>
+    <link rel="stylesheet" href="../css/pedidos.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Pedidos</h1>
+
+    <div class="header-buttons">
+        <button id="btn-voltar" onclick="window.location.href='../adminhome.html'">Voltar</button>
+    </div>
+</header>
+
+<main>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Pagamento</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="pedidos-table"></tbody>
+    </table>
+</main>
+
+
+<div class="modal-bg" id="modal-bg">
+    <div class="modal">
+        <h2>Detalhes do Pedido</h2>
+
+        <div id="detalhes-conteudo"></div>
+
+        <div class="modal-actions">
+            <button onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../../js/config.js"></script>
+<script src="../js/pedidos.js"></script>
+</body>
+</html>

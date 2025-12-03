@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+:root {
+  --primary-color: #7b1414;
+  --primary-hover: #a82323;
+  --accent-color: #c7a963;
+  --background-color: #f5f3e9;
+  --card-color: white;
+  --text-dark: #444;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: var(--background-color);
+  color: var(--text-dark);
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 36px;
+  margin: 20px 0 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h2 {
+  color: var(--primary-color);
+  font-size: 24px;
+  margin: 30px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+  font-weight: 600;
+}
+
+#sugestoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.sug-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 14px;
+}
+
+.sug-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(123, 20, 20, 0.3);
+}
+
+#boxComidas, #boxSobremesas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: var(--card-color);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--accent-color);
+  transition: var(--transition);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--accent-color);
+}
+
+.card-info {
+  flex: 1;
+}
+
+.card-info strong {
+  color: var(--primary-color);
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.qtd-select {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  font-family: "Montserrat", sans-serif;
+  margin: 8px 0;
+  width: 80px;
+  cursor: pointer;
+}
+
+.qtd-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.add-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  margin-top: 8px;
+}
+
+.add-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+#listaItens {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.item {
+  background: var(--card-color);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--accent-color);
+  transition: var(--transition);
+}
+
+.item:hover {
+  transform: translateX(5px);
+}
+
+.item strong {
+  color: var(--primary-color);
+  font-size: 15px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 8px;
+  border: 2px solid var(--accent-color);
+}
+
+#btnFechar {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 8px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  display: block;
+  margin: 30px auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#btnFechar:hover {
+  background: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(123, 20, 20, 0.4);
+}
+
+.status-pendente {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.status-preparando {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+.status-entregue {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  #boxComidas, #boxSobremesas {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .card-img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  #listaItens {
+    grid-template-columns: 1fr;
+  }
+  
+  #sugestoes {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .sug-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  #btnFechar {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
