@@ -1,41 +1,161 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  nome      String
-  email     String    @unique
-  senha     String
-  criadoEm  DateTime  @default(now())
-  orders    Order[]
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  senha    String
+  role     Role     @default(CLIENT)
+  criadoEm DateTime @default(now())
+  orders   Order[]
+  enderecos Endereco[]
+  pedidos  Pedido[]
+  sessoesRodizio SessaoRodizio[]
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+enum Categoria {
+  COMIDA
+  BEBIDA
+  SOBREMESA
+}
+
+model Product {
+  id          Int         @id @default(autoincrement())
+  nome        String
+  descricao   String?
+  preco       Decimal      @db.Decimal(10, 2)
+  estoque     Int          @default(0)
+  imagemurl   String?
+  categoria   Categoria
+  criadoEm    DateTime     @default(now())
+  atualizadoEm DateTime    @updatedAt
+  orderItems  OrderItem[]  
+  itensRodizio ItemRodizio[]
 }
 
 model Order {
-  id        Int       @id @default(autoincrement())
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int
-  total     Decimal   @db.Decimal(10, 2)
-  criadoEm  DateTime  @default(now())
-  items     OrderItem[]
+  id           Int          @id @default(autoincrement())
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       Int
+  total        Decimal      @db.Decimal(10, 2)
+  frete        Decimal?     @db.Decimal(10, 2)
+  tempoEntrega Int?
+  status       OrderStatus  @default(PENDENTE)
+  criadoEm     DateTime     @default(now())
+  items        OrderItem[]
+}
+
+enum OrderStatus {
+  PENDENTE
+  PREPARANDO
+  ENTREGUE
+  CANCELADO
 }
 
 model OrderItem {
-  id          Int      @id @default(autoincrement())
-  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  id          Int       @id @default(autoincrement())
+  order       Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId     Int
-  nomeProduto String
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
+  productId   Int
   qtd         Int
-  preco       Decimal  @db.Decimal(10, 2)
+  preco       Decimal   @db.Decimal(10, 2) 
 }
+
+model Cupom {
+  id        Int      @id @default(autoincrement())
+  codigo    String   @unique
+  tipo      String  
+  desconto  Float
+  minimo    Float?
+  descricao String?
+  validade  DateTime
+  ativo     Boolean  @default(true)
+}
+
+enum TipoPedido {
+  ALACARTE
+  RODIZIO
+}
+
+model Pedido {
+  id             Int       @id @default(autoincrement())
+  nomeCliente    String
+  formaPagamento String
+  total          Float
+  itens          String
+  data           DateTime  @default(now())
+  tipo           TipoPedido @default(ALACARTE)
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+}
+
+model Endereco {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  apelido    String   // "Casa", "Trabalho", "Pai"
+  rua        String
+  numero     String
+  bairro     String
+  cidade     String
+  cep        String
+  referencia String?
+  createdAt  DateTime @default(now())
+
+  usuario    User  @relation(fields: [userId], references: [id])
+}
+
+model SessaoRodizio {
+  id          Int          @id @default(autoincrement())
+  mesa        String?
+  nomeCliente String?      
+  pessoas     Int?         
+  status      StatusRodizio @default(ATIVA)
+  criadoEm    DateTime      @default(now())
+  encerradoEm DateTime?
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  itens  ItemRodizio[]
+}
+
+enum StatusRodizio {
+  ATIVA
+  ENCERRADA
+}
+
+model ItemRodizio {
+  id        Int       @id @default(autoincrement())
+  qtd       Int       @default(1)
+  observacao String?
+
+  criadoEm  DateTime  @default(now())
+  status    StatusItemRodizio @default(PENDENTE)
+
+  sessaoId  Int
+  sessao    SessaoRodizio @relation(fields: [sessaoId], references: [id])
+
+  productId Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+enum StatusItemRodizio {
+  PENDENTE
+  PREPARANDO
+  ENTREGUE
+}
+

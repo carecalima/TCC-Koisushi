@@ -1,25 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Função para verificar itens repetidos
-function checkItensRepetidos(items) {
-    const count = {};
-    for (const item of items) {
-        count[item.nomeProduto] = (count[item.nomeProduto] || 0) + 1;
-        if (count[item.nomeProduto] > 5) {
-            return item.nomeProduto;
-        }
-    }
-    return null;
-}
-
 async function createComanda(req, res){
-    const { userId, total, items } = req.body;
-
-    const repetido = checkItensRepetidos(items);
-    if (repetido) {
-        return res.status(400).json({ alerta: `Mais de 5 itens repetidos: ${repetido}` });
-    }
+    const { userId, total } = req.body;
 
     try {
         const comanda = await prisma.order.create({
@@ -27,7 +10,7 @@ async function createComanda(req, res){
                 user: { connect: { id: userId } },
                 total,
                 items: {
-                    create: items.map(item => ({
+                    create: req.body.items.map(item => ({
                         nomeProduto: item.nomeProduto,
                         qtd: item.qtd,
                         preco: item.preco
@@ -74,11 +57,6 @@ async function updateComanda(req, res) {
     const { id } = req.params;
     const { userId, total, items } = req.body;
 
-    const repetido = checkItensRepetidos(items);
-    if (repetido) {
-        return res.status(400).json({ alerta: `Mais de 5 itens repetidos: ${repetido}` });
-    }
-
     try {
         const comanda = await prisma.order.update({
             where: { id: Number(id) },
@@ -103,6 +81,7 @@ async function updateComanda(req, res) {
         res.status(500).json({ error: "Falha ao atualizar Comanda" });
     }
 }
+
 
 async function deleteComanda(req, res) {
     const { id } = req.params;
